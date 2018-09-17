@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 // API calls
 app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
+  res.send({ express: process.env.FIREBASE });
 });
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

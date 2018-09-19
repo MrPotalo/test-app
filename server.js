@@ -18,7 +18,7 @@ var db = admin.firestore();
 
 // API calls
 app.get('/api/hello', (req, res) => {
-  res.send({ express: process.env.FIREBASE });
+  res.send({ express: "Hello" });
 });
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

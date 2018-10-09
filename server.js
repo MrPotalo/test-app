@@ -18,7 +18,17 @@ var db = admin.firestore();
 
 // API calls
 app.get('/api/hello', (req, res) => {
-  res.send({ express: "Hello" });
+  const test;
+  db.collection('test').get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+      });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
+  res.send({ express: test });
 });
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

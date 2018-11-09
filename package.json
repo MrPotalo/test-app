@@ -2,6 +2,7 @@
   "name": "test-app",
   "version": "1.0.0",
   "scripts": {
+    "prettier": "",
     "client": "cd client && yarn start",
     "server": "set PORT=3001 && nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
@@ -9,10 +10,16 @@
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
-    "express": "^4.16.2",
-    "firebase-admin": "^6.0.0"
+    "express": "^4.16.2"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "husky": "^1.1.3",
+    "prettier": "^1.15.1",
+    "pretty-quick": "^1.8.0"
+  },
+  "hooks": {
+    "pre-commit": "yarn pretty-quick",
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }

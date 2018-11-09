@@ -1,10 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
   state = {
-    response: ''
+    response: "",
+    grid: [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
   };
 
   componentDidMount() {
@@ -14,11 +26,11 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch("/api/hello");
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-    
+
     return body;
   };
 
@@ -29,9 +41,18 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          {this.state.response}
-        </p>
+        <p className="App-intro">{this.state.response}</p>
+        <table>
+          {this.state.grid.map(row => {
+            return (
+              <tr>
+                {row.map(col => {
+                  return <td>{col}</td>;
+                })}
+              </tr>
+            );
+          })}
+        </table>
       </div>
     );
   }
